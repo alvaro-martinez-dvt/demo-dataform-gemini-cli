@@ -1,0 +1,38 @@
+config {
+  type: "table",
+  schema: "reporting",
+  description: "Tabla enriquecida que combina pedidos con información demográfica de los usuarios.",
+  tags: ["reporting", "orders", "users"],
+  columns: {
+    order_id: "Identificador único del pedido",
+    user_id: "Identificador del usuario",
+    first_name: "Nombre del usuario",
+    last_name: "Apellido del usuario",
+    age: "Edad del usuario",
+    gender: "Género del usuario",
+    city: "Ciudad del usuario",
+    state: "Estado del usuario",
+    country: "País del usuario",
+    status: "Estado actual del pedido",
+    order_created_at: "Fecha de creación del pedido"
+  }
+}
+
+SELECT
+  o.order_id,
+  o.user_id,
+  u.first_name,
+  u.last_name,
+  u.age,
+  u.gender,
+  u.city,
+  u.state,
+  u.country,
+  o.status,
+  o.order_created_at
+FROM
+  ${ref("stg_orders")} AS o
+LEFT JOIN
+  ${ref("stg_users")} AS u
+ON
+  o.user_id = u.id

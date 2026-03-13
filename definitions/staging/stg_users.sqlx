@@ -1,0 +1,42 @@
+config {
+  type: "view",
+  schema: "staging",
+  description: "Vista staging para la tabla de usuarios, excluyendo información confidencial (emails).",
+  tags: ["staging", "users"],
+  columns: {
+    id: "Identificador único del usuario",
+    first_name: "Nombre del usuario",
+    last_name: "Apellido del usuario",
+    age: "Edad del usuario",
+    gender: "Género del usuario",
+    state: "Estado de residencia",
+    street_address: "Dirección física",
+    postal_code: "Código postal",
+    city: "Ciudad de residencia",
+    country: "País de residencia",
+    latitude: "Latitud de la dirección",
+    longitude: "Longitud de la dirección",
+    traffic_source: "Fuente de tráfico original",
+    created_at: "Fecha de creación del registro",
+    user_geom: "Datos geoespaciales del usuario"
+  }
+}
+
+SELECT
+  id,
+  first_name,
+  last_name,
+  age,
+  gender,
+  state,
+  street_address,
+  postal_code,
+  city,
+  country,
+  latitude,
+  longitude,
+  traffic_source,
+  created_at,
+  user_geom
+FROM
+  ${ref("users")}

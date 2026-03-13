@@ -1,0 +1,20 @@
+config {
+  type: "view",
+  schema: "staging",
+  description: "Vista staging para la tabla de pedidos, con limpieza y renombrado semántico.",
+  tags: ["staging", "orders"],
+  columns: {
+    order_id: "Identificador único del pedido",
+    user_id: "Identificador del usuario que realizó el pedido",
+    status: "Estado actual del pedido",
+    order_created_at: "Fecha y hora en la que se creó el pedido"
+  }
+}
+
+SELECT
+  order_id,
+  user_id,
+  status,
+  created_at AS order_created_at
+FROM
+  ${ref("orders")}
